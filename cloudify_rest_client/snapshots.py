@@ -109,7 +109,7 @@ class SnapshotsClient(object):
         assert snapshot_path
         assert snapshot_id
 
-        uri = '/snapshots/{0}/upload'.format(snapshot_id)
+        uri = '/snapshots/{0}/archive'.format(snapshot_id)
         query_params = {}
 
         if urlparse.urlparse(snapshot_path).scheme and \
@@ -120,8 +120,8 @@ class SnapshotsClient(object):
             data = bytes_stream_utils.request_data_file_stream_gen(
                 snapshot_path)
 
-        response = self.api.put(uri, params=query_params, data=data,
-                                expected_status_code=201)
+        response = self.api.post(uri, params=query_params, data=data,
+                                 expected_status_code=201)
         return Snapshot(response)
 
     def download(self, snapshot_id, output_file):
@@ -134,7 +134,7 @@ class SnapshotsClient(object):
          (optional)
         :return: The file path of the downloaded snapshot.
         """
-        uri = '/snapshots/{0}/download'.format(snapshot_id)
+        uri = '/snapshots/{0}/archive'.format(snapshot_id)
 
         with contextlib.closing(self.api.get(uri, stream=True)) as response:
             output_file = bytes_stream_utils.write_response_stream_to_file(

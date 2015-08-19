@@ -120,8 +120,8 @@ class SnapshotsClient(object):
             data = bytes_stream_utils.request_data_file_stream_gen(
                 snapshot_path)
 
-        response = self.api.post(uri, params=query_params, data=data,
-                                 expected_status_code=201)
+        response = self.api.put(uri, params=query_params, data=data,
+                                expected_status_code=201)
         return Snapshot(response)
 
     def download(self, snapshot_id, output_file):

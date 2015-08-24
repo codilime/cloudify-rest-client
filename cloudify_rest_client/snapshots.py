@@ -42,6 +42,20 @@ class Snapshot(dict):
         """
         return self.get('created_at')
 
+    @property
+    def status(self):
+        """
+        :return: Status of snapshot.
+        """
+        return self.get('status')
+
+    @property
+    def error(self):
+        """
+        :return: Error message, if any, from snapshot creation process.
+        """
+        return self.get('error', '')
+
 
 class SnapshotsClient(object):
     """
@@ -92,7 +106,7 @@ class SnapshotsClient(object):
         """
         assert snapshot_id
         uri = '/snapshots/{0}'.format(snapshot_id)
-        self.api.post(uri, expected_status_code=201)
+        self.api.post(uri)
 
     def upload(self, snapshot_path, snapshot_id):
         """

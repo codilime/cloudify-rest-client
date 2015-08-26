@@ -155,3 +155,18 @@ class SnapshotsClient(object):
                 response, output_file)
 
             return output_file
+
+    def update_status(self, snapshot_id, status, error=None):
+        """
+        Update snapshots with the provided status and optional error.
+        :param snapshot_id: Id of the snapshot to update.
+        :param status: Updated snapshot's status.
+        :param error: Updated snapshot error (optional).
+        :return: Updated snapshot.
+        """
+        uri = '/snapshots/{0}'.format(snapshot_id)
+        params = {'status': status}
+        if error:
+            params['error'] = error
+        response = self.api.patch(uri, data=params)
+        return Snapshot(response)

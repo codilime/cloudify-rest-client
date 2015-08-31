@@ -75,7 +75,7 @@ class SnapshotsClient(object):
         response = self.api.get('/snapshots', _include=_include)
         return [Snapshot(item) for item in response]
 
-    def create(self, snapshot_id):
+    def create(self, snapshot_id, include_metrics, include_credentials):
         """
         Creates a new snapshot.
 
@@ -84,7 +84,9 @@ class SnapshotsClient(object):
         """
         assert snapshot_id
         uri = '/snapshots/{0}'.format(snapshot_id)
-        response = self.api.put(uri, expected_status_code=201)
+        params = {'include_metrics': include_metrics,
+                  'include_credentials': include_credentials}
+        response = self.api.put(uri, data=params, expected_status_code=201)
         return Snapshot(response)
 
     def delete(self, snapshot_id):

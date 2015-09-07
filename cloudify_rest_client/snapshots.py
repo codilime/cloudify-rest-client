@@ -107,7 +107,7 @@ class SnapshotsClient(object):
         :param snapshot_id: The id of the snapshot to be restored.
         """
         assert snapshot_id
-        uri = '/snapshots/{0}'.format(snapshot_id)
+        uri = '/snapshots/{0}/restore'.format(snapshot_id)
         self.api.post(uri)
 
     def upload(self, snapshot_path, snapshot_id):

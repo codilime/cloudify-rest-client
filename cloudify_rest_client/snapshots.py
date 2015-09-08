@@ -18,6 +18,7 @@ import urlparse
 import contextlib
 
 from cloudify_rest_client import bytes_stream_utils
+from cloudify_rest_client.executions import Execution
 
 
 class Snapshot(dict):
@@ -108,7 +109,8 @@ class SnapshotsClient(object):
         """
         assert snapshot_id
         uri = '/snapshots/{0}/restore'.format(snapshot_id)
-        self.api.post(uri)
+        response = self.api.post(uri)
+        return Execution(response)
 
     def upload(self, snapshot_path, snapshot_id):
         """

@@ -88,7 +88,7 @@ class SnapshotsClient(object):
         params = {'include_metrics': include_metrics,
                   'include_credentials': include_credentials}
         response = self.api.put(uri, data=params, expected_status_code=201)
-        return Excution(response)
+        return Execution(response)
 
     def delete(self, snapshot_id):
         """

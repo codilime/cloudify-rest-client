@@ -172,5 +172,4 @@ class SnapshotsClient(object):
         params = {'status': status}
         if error:
             params['error'] = error
-        response = self.api.patch(uri, data=params)
-        return Snapshot(response)
+        self.api.patch(uri, data=params)

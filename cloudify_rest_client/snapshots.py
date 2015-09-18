@@ -66,6 +66,19 @@ class SnapshotsClient(object):
     def __init__(self, api):
         self.api = api
 
+    def get(self, snapshot_id, _include=None):
+        """
+        Returns a snapshot by its id.
+
+        :param snapshot_id: Id of the snapshot to get.
+        :param _include: List of fields to include in response.
+        :return: Snapshot.
+        """
+        assert snapshot_id
+        uri = '/snapshots/{0}'.format(snapshot_id)
+        response = self.api.get(uri, _include=_include)
+        return Snapshot(response)
+
     def list(self, _include=None):
         """
         Returns a list of currently stored snapshots.

@@ -114,17 +114,17 @@ class SnapshotsClient(object):
         response = self.api.delete('/snapshots/{0}'.format(snapshot_id))
         return Snapshot(response)
 
-    def restore(self, snapshot_id, restore_deployment_workers):
+    def restore(self, snapshot_id, recreate_deployments_envs):
         """
         Restores the snapshot whose id matches the provided snapshot id.
 
         :param snapshot_id: The id of the snapshot to be restored.
-        :param restore_deployment_workers: If manager should restore
-        deployment workers (environments).
+        :param recreate_deployments_envs: If manager should recreate
+        deployment environments.
         """
         assert snapshot_id
         uri = '/snapshots/{0}/restore'.format(snapshot_id)
-        params = {'restore_deployment_workers': restore_deployment_workers}
+        params = {'recreate_deployments_envs': recreate_deployments_envs}
         response = self.api.post(uri, data=params)
         return Execution(response)
 

@@ -114,7 +114,7 @@ class SnapshotsClient(object):
         response = self.api.delete('/snapshots/{0}'.format(snapshot_id))
         return Snapshot(response)
 
-    def restore(self, snapshot_id, recreate_deployments_envs):
+    def restore(self, snapshot_id, recreate_deployments_envs=True):
         """
         Restores the snapshot whose id matches the provided snapshot id.
 

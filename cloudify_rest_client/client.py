@@ -108,6 +108,8 @@ class HTTPClient(object):
 
     def _do_request(self, requests_method, request_url, body, params, headers,
                     expected_status_code, stream, verify):
+        self.logger.error('DOING REQUEST {0} {1} headers {2} verify {3}'.format(
+          requests_method, request_url, headers, verify))
         response = requests_method(request_url,
                                    data=body,
                                    params=params,

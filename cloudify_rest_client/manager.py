@@ -44,6 +44,8 @@ class ManagerClient(object):
         :param _include: List of fields to include in response.
         :return: Context stored in manager.
         """
+        from celery.contrib import rdb
+        rdb.set_trace()
         response = self.api.get('/provider/context', _include=_include)
         return response
 

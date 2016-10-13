@@ -38,6 +38,7 @@ from cloudify_rest_client.plugins import PluginsClient
 from cloudify_rest_client.maintenance import MaintenanceModeClient
 from cloudify_rest_client.tenants import TenantsClient
 from cloudify_rest_client.user_groups import UserGroupsClient
+from cloudify_rest_client.cluster import ClusterClient
 
 
 DEFAULT_PORT = 80
@@ -306,3 +307,4 @@ class CloudifyClient(object):
         self.deployment_updates = DeploymentUpdatesClient(self._client)
         self.tenants = TenantsClient(self._client)
         self.user_groups = UserGroupsClient(self._client)
+        self.cluster = ClusterClient(self._client)
